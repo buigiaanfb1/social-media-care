@@ -23,6 +23,8 @@ const SmsCodeForm = ({ onSubmitSmsCode }) => {
         value={smsCode}
         onChange={(e) => setSmsCode(e.target.value)}
       />
+      <br />
+      <br />
       <Button variant="contained" color="primary" type="submit">
         Submit
       </Button>
