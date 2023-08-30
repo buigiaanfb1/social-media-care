@@ -28,6 +28,12 @@
   color: #61dafb;
 }
 
+/* styles.css (or your preferred CSS file) */
+.active {
+  background-color: #e0e0e0; /* Customize the active link background color */
+  /* Add any other desired styling */
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
