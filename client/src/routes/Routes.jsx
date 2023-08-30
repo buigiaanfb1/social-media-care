@@ -8,13 +8,24 @@ import {
 } from "react-router-dom";
 import LoginPage from "../pages/Login";
 import HomePage from "../pages/Home";
+import Account from "../pages/Account";
+import Posts from "../pages/Posts";
 import MainLayout from "../layouts/main";
 
 const RequireAuth = ({ children }) => {
-  const userIsLogged = true; // Your hook to get login status
+  const userIsLogged = Boolean(localStorage.getItem("phoneNumber")); // Your hook to get login status
 
   if (!userIsLogged) {
     return <Navigate to="/login" replace={true} />;
+  }
+  return children;
+};
+
+const RequireCheckAuth = ({ children }) => {
+  const userIsLogged = Boolean(localStorage.getItem("phoneNumber")); // Your hook to get login status
+
+  if (userIsLogged) {
+    return <Navigate to="/all-posts" replace={true} />;
   }
   return children;
 };
@@ -23,7 +34,15 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/login"
+          element={
+            <RequireCheckAuth>
+              <LoginPage />
+            </RequireCheckAuth>
+          }
+        />
+        <Route path="/" element={<Navigate to="/all-posts" replace />} />
         <Route
           element={
             <RequireAuth>
@@ -31,9 +50,8 @@ const Routes = () => {
             </RequireAuth>
           }
         >
-          <Route path="/" element={<HomePage />} />
-          <Route path="/account" element={<HomePage />} />
-          <Route path="/all-posts" element={<HomePage />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/all-posts" element={<Posts />} />
         </Route>
       </Switch>
     </BrowserRouter>

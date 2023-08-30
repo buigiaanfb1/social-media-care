@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import { MuiTelInput } from "mui-tel-input";
 
 const PhoneNumberForm = ({ onSubmitPhoneNumber, phoneNumber }) => {
   const [phoneNumberState, setPhoneNumberState] = useState(phoneNumber);
@@ -9,18 +10,24 @@ const PhoneNumberForm = ({ onSubmitPhoneNumber, phoneNumber }) => {
     onSubmitPhoneNumber(phoneNumberState);
   };
 
+  const handleChange = (newValue) => {
+    setPhoneNumberState(newValue);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
-        label="Phone Number"
-        variant="outlined"
-        fullWidth
+      <MuiTelInput
         value={phoneNumberState}
-        onChange={(e) => setPhoneNumberState(e.target.value)}
+        onChange={handleChange}
+        style={{ width: "100%" }}
       />
-      <Button variant="contained" color="primary" type="submit">
-        Submit
-      </Button>
+      <br />
+      <br />
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button variant="contained" color="primary" type="submit">
+          Get OTP
+        </Button>
+      </div>
     </form>
   );
 };

@@ -1,8 +1,8 @@
 // NavigationBar.js
 import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { Drawer, List, ListItem, ListItemText } from "@mui/material";
-import { NavLink } from "react-router-dom"; // Import NavLink
+import { Drawer, List } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
 
 const NavigationBar = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("phoneNumber");
+    navigate("/login");
+  };
 
   return (
     <Drawer
@@ -50,6 +56,10 @@ const NavigationBar = () => {
           >
             Account
           </NavLink>
+        </div>
+
+        <div onClick={handleLogout}>
+          <h5>Logout</h5>
         </div>
       </List>
     </Drawer>

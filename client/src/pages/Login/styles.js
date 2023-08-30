@@ -24,11 +24,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[3],
-
     "& .MuiButtonBase-root": {
-      marginTop: theme.spacing(2),
-      marginLeft: "auto",
-      padding: theme.spacing(1, 2),
+      // marginTop: theme.spacing(2),
+      // marginLeft: "auto",
+      // padding: theme.spacing(1, 2),
     },
   },
 }));
