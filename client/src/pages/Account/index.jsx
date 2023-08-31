@@ -1,8 +1,11 @@
+import React from "react";
+import SocialMediaGrid from "../../components/Home/SocialMediaGrid";
+
 const Account = () => {
   return (
     <div>
-      <h1>Welcome to the Account Page!</h1>
-      {/* Add your Account page content here */}
+      <h2>Account</h2>
+      <SocialMediaGrid />
     </div>
   );
 };

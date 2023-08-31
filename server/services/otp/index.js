@@ -1,7 +1,7 @@
 const db = require("../../firebase/config");
 
 const getUserAccessCode = async (phoneNumber) => {
-  const doc = await db.collection("users_access_code").doc(phoneNumber).get();
+  const doc = await db.collection("users").doc(phoneNumber).get();
   if (!doc.exists) {
     return null;
   } else {
@@ -10,14 +10,14 @@ const getUserAccessCode = async (phoneNumber) => {
 };
 
 const saveUserAccessCode = async (phoneNumber, accessCode) => {
-  await db.collection("users_access_code").doc(phoneNumber).set({ accessCode });
+  await db.collection("users").doc(phoneNumber).set({ accessCode });
 };
 
-const clearUserAccessCode = async (phoneNumber, accessCode) => {
+const clearUserAccessCode = async (phoneNumber, accessToken) => {
   await db
-    .collection("users_access_code")
+    .collection("users")
     .doc(phoneNumber)
-    .set({ accessCode: "" });
+    .set({ accessToken, accessCode: "" });
 };
 
 module.exports = { getUserAccessCode, saveUserAccessCode, clearUserAccessCode };
